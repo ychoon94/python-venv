@@ -6,7 +6,7 @@ class Employee:
         self.salary = salary
 
     def increment(self, amount):
-        self.salary += amount
+        self.salary = self.salary + amount
         return self.salary
 
     def higherThan(self, other):
