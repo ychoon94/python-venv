@@ -5,9 +5,11 @@ def createName():
     name = input("Name: ")
     return name
 
+
 def createAge():
     age = input("Age: ")
     return age
+
 
 def createSalary():
     salary = int(input("Salary: "))
@@ -33,6 +35,8 @@ if __name__ == "__main__":
     objs[0].increment(500)
 
     if objs[0].higherThan(objs[1]):
-        print('{} has higher salary than {}.' .format(objs[0].name, objs[1].name))
+        print('{} has higher salary than {}.'
+              .format(objs[0].name, objs[1].name))
     else:
-        print('{} has lower salary than {}.' .format(objs[0].name, objs[1].name))
+        print('{} has lower salary than {}.'
+              .format(objs[0].name, objs[1].name))
