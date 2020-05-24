@@ -1,10 +1,12 @@
+
 class Hash:
+
     def __init__(self, size):
         self.key = None
         self.tableSize = size
         self.table = []
         for i in range(size):
-            self.table.append(0)
+            self.table.append([])
 
     def hashFunction(self, key):
         sumOfChar = 0
@@ -14,13 +16,13 @@ class Hash:
 
     def insertItem(self, key):
         index = self.hashFunction(key)
-        self.table[index] = key
+        self.table[index].append(key)
 
     def deleteItem(self, key):
         index = self.hashFunction(key)
 
         try:
-            if(self.table.pop(index)):
+            if(self.table[index].remove(key)):
                 print("Number {} has been successfully removed."
                       .format(key))
         except ValueError:
@@ -29,14 +31,19 @@ class Hash:
 
     def displayHash(self):
         for i in range(len(self.table)):
-            print("{} --> {}" .format(i, self.table[i]))
+            if not self.table[i]:
+                print(i)
+            else:
+                print(i, end=' ')
+                print(" --> {}" .format( self.table[i]))
         print('\n')
 
 
 if __name__ == "__main__":
-    a = ["0000", "kv1234c", "pob2523", "akb234", "ghe342"]
-
-    h = Hash(30)
+    a = ["pkb234", "pkv1234", "phb2323", "akb234", "ghe342"]
+#"pkb234", "pkv1234", "phb2323",
+#"0000", "kv1234c", "pob2523",
+    h = Hash(7)
 
     for i in range(len(a)):
         h.insertItem(a[i])
