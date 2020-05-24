@@ -88,7 +88,7 @@ class LinkedList:
 
     def get_count(self):
         if self.head is None:
-            return 0;
+            return 0
         temp = self.head
         count = 0
         while temp is not None:
@@ -130,7 +130,7 @@ class LinkedList:
             print("The list no element to delete.")
             return
 
-        #deleting first node
+        # deleting first node
         if self.head.data == x:
             self.head = self.head.next
             return
