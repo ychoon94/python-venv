@@ -14,13 +14,13 @@ class Hash:
 
     def insertItem(self, key):
         index = self.hashFunction(key)
-        self.table.insert(index, key)
+        self.table[index] = key
 
     def deleteItem(self, key):
         index = self.hashFunction(key)
 
         try:
-            if(self.table.pop(self.table.index(index))):
+            if(self.table.pop(index)):
                 print("Number {} has been successfully removed."
                       .format(key))
         except ValueError:
@@ -34,13 +34,15 @@ class Hash:
 
 
 if __name__ == "__main__":
-    a = ["pkb234", "pkv1234", "phb2323", "akb234", "ghe342"]
+    a = ["0000", "kv1234c", "pob2523", "akb234", "ghe342"]
 
     h = Hash(30)
 
     for i in range(len(a)):
         h.insertItem(a[i])
 
-    h.deleteItem("pkb234")
+    h.displayHash()
+
+    h.deleteItem("0000")
 
     h.displayHash()
