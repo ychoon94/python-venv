@@ -8,22 +8,18 @@
 
 import sys
 
-a = []  # start an empty list
+#a = []  # start an empty list
 # read number of element in the list
-n = int(input('how many item in the list?'))
-for i in range(n):
-    new_element = int(input())  # read next element
-    a.append(new_element)  # add into list
     # or
     # a.appent(int(input()))
-print(a)
-integer = 10
-try:
-    if(a.pop(a.index(integer))):
-        print("Success")
-        print(a)
-except ValueError:
-    print("Please try again")
+#print(a)
+#integer = 10
+#try:
+#    if(a.pop(a.index(integer))):
+#        print("Success")
+#        print(a)
+#except ValueError:
+#    print("Please try again")
 
 #if(a.pop(index)):
 #    print("Success")
@@ -34,3 +30,14 @@ except ValueError:
 #    print("success")
 #else:
 #    print("Fail")
+a = []
+print(a)
+a.append([])
+n = int(input('how many item in the list?'))
+
+for k in range(n):
+    new_element = int(input())  # read next element
+    a[0].append(new_element)  # add into list
+
+a[0].remove(12)
+print(a)
