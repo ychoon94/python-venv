@@ -35,7 +35,7 @@ class Hash:
                 print(i)
             else:
                 print(i, end=' ')
-                print(" --> {}" .format( self.table[i]))
+                print(" --> {}" .format(self.table[i]))
         print('\n')
 
 
