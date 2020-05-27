@@ -1,8 +1,9 @@
 from Account import Account
 
+
 class Saving(Account):
     def __init__(self, acctNo, deposit, interestRate):
-        super().__init__(acctNo, deposit) #calling superclass constructor
+        super().__init__(acctNo, deposit)  # calling superclass constructor
         self.__interestRate = interestRate
 
     def __getInterestRate(self):
@@ -12,7 +13,7 @@ class Saving(Account):
         self._balance = self._balance + self._balance * self.__interestRate
 
 
-#program
+# program
 if __name__ == '__main__':
     s1 = Saving("1234", 50000, 0.03)
     s1.deposit(1000)
