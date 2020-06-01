@@ -70,7 +70,7 @@ class Hash:
                 index2 = self.hashFunction((index2 + counter * hash2))
                 if self.table[index2] is None:
                     self.table[index2] = key
-                    print("Linear probing execute attempt {}: h({}) + {}: {}- "
+                    print("Double Hashing execute attempt {}: h({}) + {}: {}- "
                           "pass(insert successfully)"
                           .format(counter, key, counter, index2))
                     notFound = False
