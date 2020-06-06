@@ -13,7 +13,7 @@ class Vehicle:
 
 
 class registeredVehicle(Vehicle):
-    CAR, MOTORCYCLE, TRUCK, VAN = range(4)
+    CAR, MOTORCYCLE, TRUCK, BUS = range(4)
 
     def __init__(self, vehicleType, regNum, *args, **kwargs):
         self.vehicleType = vehicleType
@@ -111,19 +111,19 @@ class HashRV:
         sumOfChar = 0
         for i in range(len(key)):
             sumOfChar += ord(key[i])
-            return sumOfChar % self.tableSize
+        return sumOfChar % self.tableSize
 
     def hash2(self, key):
         sumOfChar = 0
         for i in range(len(key)):
             sumOfChar += ord(key[i])
-            return 7 - (sumOfChar % 7)
+        return 7 - (sumOfChar % 7)
 
     def hybridHashChaining(self, key, value):
         index = self.hashFunction(key)
         if not self.table[index]:
             self.table[index].append([key, value])
-            print("Insert successfully.")
+            print("Insert successfully.\n")
         else:
             hash2 = self.hash2(key)
             notFound = True
@@ -178,7 +178,8 @@ class HashRV:
                         counter += 1
                 else:
                     print("{} is not found in the system." .format(key))
-                    break
+                    notFound = False
+                    return 0
             # if not found in 1st loop, perform doubleHashing and search
             elif counter > 0 and counter <= 3:
                 hash2 = self.hash2(key)
@@ -195,26 +196,29 @@ class HashRV:
                         counter += 1
                 else:
                     print("{} is not found in the system." .format(key))
-                    break
+                    notFound = False
+                    return 0
             elif counter > 3:
-                for i in range(len(self.table[index2])):
+                for i in range(1, len(self.table[index2])):
                     if self.table[index2]:   # check if the list is empty
                         try:
                             print("Search executed at {} index. Try {}"
-                                  .format(index2, counter))
+                                  .format(index2, counter+i-1))
                             position = self.table[index2][i][0].index(key)
                             notFound = False
+                            print("Value found")
                             return self.table[index2][i][1]
                         except ValueError:
-                            if i is not len(self.table[index2]):
+                            if (i+1) != len(self.table[index2]):
                                 continue
                             else:
                                 print("{} is not found in the system."
                                       .format(key))
-                                break
+                                notFound = False
+                                return 0
                     else:
                         print("{} is not found in the system." .format(key))
-                        break
+                        return 0
                     break
 
 
@@ -231,13 +235,13 @@ class HashO:
         sumOfChar = 0
         for i in range(len(key)):
             sumOfChar += ord(key[i])
-            return sumOfChar % self.tableSize
+        return sumOfChar % self.tableSize
 
     def hash2(self, key):
         sumOfChar = 0
         for i in range(len(key)):
             sumOfChar += ord(key[i])
-            return 7 - (sumOfChar % 7)
+        return 7 - (sumOfChar % 7)
 
     def hybridHashChaining(self, key, value):
         index = self.hashFunction(key)
@@ -298,7 +302,8 @@ class HashO:
                         counter += 1
                 else:
                     print("{} is not found in the system." .format(key))
-                    break
+                    notFound = False
+                    return 0
             # if not found in 1st loop, perform doubleHashing and search
             elif counter > 0 and counter <= 3:
                 hash2 = self.hash2(key)
@@ -315,26 +320,29 @@ class HashO:
                         counter += 1
                 else:
                     print("{} is not found in the system." .format(key))
-                    break
+                    notFound = False
+                    return 0
             elif counter > 3:
-                for i in range(len(self.table[index2])):
+                for i in range(1, len(self.table[index2])):
                     if self.table[index2]:   # check if the list is empty
                         try:
                             print("Search executed at {} index. Try {}"
-                                  .format(index2, counter))
+                                  .format(index2, counter+i-1))
                             position = self.table[index2][i][0].index(key)
                             notFound = False
+                            print("Value found")
                             return self.table[index2][i][1]
                         except ValueError:
-                            if i is not len(self.table[index2]):
+                            if (i+1) != len(self.table[index2]):
                                 continue
                             else:
                                 print("{} is not found in the system."
                                       .format(key))
-                                break
+                                notFound = False
+                                return 0
                     else:
                         print("{} is not found in the system." .format(key))
-                        break
+                        return 0
                     break
 
 
@@ -372,7 +380,7 @@ def ECforName(value):
 def ECforIC(value):
     value = value.upper()
     counter = 0
-    if not len(value) <= 5:
+    if not (len(value) <= 5 or len(value) > 14):
         for i in range(len(value)):
             if (ord(value[i]) >= 65 and ord(value[i]) <= 90) or \
                (ord(value[i]) >= 48 and ord(value[i]) <= 57) or \
@@ -435,7 +443,7 @@ def ECforVType(value):
 def ECforModel(value):
     value = value.upper()
     counter = 0
-    if len(value) < 1:
+    if not len(value) < 1:
         for i in range(len(value)):
             if (ord(value[i]) >= 48 and ord(value[i]) <= 57) or \
                (ord(value[i]) >= 65 and ord(value[i]) <= 90) or \
@@ -444,7 +452,7 @@ def ECforModel(value):
             else:
                 counter += 1
     else:
-        print("Input contain non-alphabet.\nPlease try again.")
+        print("Model name too short to recognize.\nPlease try again.")
         return False
 
     if counter > 0:
@@ -479,7 +487,7 @@ def ECforEngine(value):
     counter = 0
     if len(value) <= 4:
         for i in range(len(value)):
-            if ord(value) == 46 or \
+            if ord(value[i]) == 46 or \
              (ord(value[i]) >= 48 and ord(value[i]) <= 57):
                 pass
             else:
@@ -495,178 +503,299 @@ def ECforEngine(value):
         return True
 
 
-def option(choice, owner, vehicle, hashRV, hashO):
+def newRegistration(hashO, hashRV):
     condition = True
-    if choice == 1:  # register new vehicle ownership
-        print("Please fill in owner info below.")
-        while condition:  # pitstop for looping, so user don't have to retype
-            name = input("Name: ")
-            if ECforName(name):
+    while condition:
+        print("\n__________________________________________________\n")
+        print("Is this a new owner vehicle registration or"
+              " existing owner vehicle registration?")
+        print("For new owner, insert '1'.")
+        print("For existing owner, insert '2'.")
+        print("To leave insert, '3'.")
+        choice = int(input("Choice: "))
+        print("\n__________________________________________________\n")
+        if choice == 1:
+            while condition:
+                condition = True
+                print("Please fill in owner info below.")
+                while condition:  # pitstop for looping, so user don't
+                                  # have to retype
+                    ic = input("IC(eg. yymmdd-ss-nnnn)/Passport: ")
+                    if isinstance(hashO.searchKey(ic), Person):
+                        print("This IC/Passport belongs to existing"
+                              " vehicle owner.")
+                        print("Please go to existing vehicle owner"
+                              " section.")
+                        break
+                    else:
+                        if ECforIC(ic):
+                            break
+                        else:
+                            continue
+                while condition:  # pitstop for looping, so user don't
+                                  # have to retype
+                    name = input("Name: ")
+                    if ECforName(name):
+                        break
+                    else:
+                        continue
+                while condition:  # pitstop for looping, so user don't
+                                  # have to retype
+                    address = input("Address(without symbol): ")
+                    if ECforAddress(address):
+                        break
+                    else:
+                        continue
+                owner = vehicleOwner(name, ic, address)
+                hashO.hybridHashChaining(owner.getIC(), owner)
+                print("__________________________________________________")
+                condition = True
+                print("Please fill in the vehicle info below.")
+                while condition:
+                    print("Choose your vehicle type:")
+                    print("CAR--1 \nMOTORCYCLE--2 \nTRUCK--3 \nVAN--4")
+                    vType = input("Vehicle Type(Number only): ")
+                    if ECforVType(vType):
+                        break
+                    else:
+                        continue
+                while condition:
+                    regNum = input("Vehicle Register Number: ")
+                    if isinstance(hashRV.searchKey(regNum),
+                                  registeredVehicle):
+                        print("This vehicle register number has been"
+                              " registered before.")
+                        print("Please insert a new vehicle register"
+                              " number to check for availability.")
+                        continue
+                    else:
+                        if ECforAddress(regNum):
+                            break
+                        else:
+                            continue
+                while condition:  # implement vehicle info
+                    maker = input("Vehicle Maker: ")
+                    if ECforModel(maker):
+                        break
+                    else:
+                        continue
+                while condition:
+                    model = input("Vehicle Model: ")
+                    if ECforModel(model):
+                        break
+                    else:
+                        continue
+                while condition:
+                    colour = input("Vehicle Colour: ")
+                    if ECforColour(colour):
+                        break
+                    else:
+                        continue
+                while condition:
+                    engine = input("Engine Capacity: ")
+                    if ECforEngine(engine):
+                        break
+                    else:
+                        continue
+                if vType == "1":
+                    vehicle = registeredVehicle(registeredVehicle.CAR,
+                                                regNum, maker,
+                                                model, colour, engine)
+                elif vType == "2":
+                    vehicle = registeredVehicle(registeredVehicle.MOTORCYCLE,
+                                                regNum, maker, model,
+                                                colour, engine)
+                elif vType == "3":
+                    vehicle = registeredVehicle(registeredVehicle.TRUCK,
+                                                regNum, maker, model,
+                                                colour, engine)
+                elif vType == "4":
+                    vehicle = registeredVehicle(registeredVehicle.BUS,
+                                                regNum, maker, model,
+                                                colour, engine)
+                owner.addVehicle(vehicle)
+                if len(owner.ownedVehicle) < 1:
+                    hashRV.hybridHashChaining(owner.ownedVehicle[0].getRegNum(), owner)
+                else:
+                    hashRV.hybridHashChaining(owner.ownedVehicle[-1].getRegNum(),
+                                              owner)
                 break
-            else:
-                continue
-        while condition:  # pitstop for looping, so user don't have to retype
-            ic = input("IC(eg. yymmdd-ss-nnnn)/Passport: ")
-            if ECforIC(ic):
+        elif choice == 2:
+            condition = True
+            while condition:
+                ic = input("Please insert existing owner IC/Passport:")
+                if isinstance(hashO.searchKey(ic), Person):
+                    owner = hashO.searchKey(ic)
+                    print("__________________________________________________")
+                    condition = True
+                    print("Please fill in the vehicle info below.")
+                    while condition:
+                        print("Choose your vehicle type:")
+                        print("CAR--1 \nMOTORCYCLE--2 \nTRUCK--3 \nVAN--4")
+                        vType = input("Vehicle Type(Number only): ")
+                        if ECforVType(vType):
+                            break
+                        else:
+                            continue
+                    while condition:
+                        regNum = input("Vehicle Register Number: ")
+                        if isinstance(hashRV.searchKey(regNum),
+                                      registeredVehicle):
+                            print("This vehicle register number has been"
+                                  " registered before.")
+                            print("Please insert a new vehicle register"
+                                  " number to check for availability.")
+                            continue
+                        else:
+                            if ECforAddress(regNum):
+                                break
+                            else:
+                                continue
+                    while condition:  # implement vehicle info
+                        maker = input("Vehicle Maker: ")
+                        if ECforName(maker):
+                            break
+                        else:
+                            continue
+                    while condition:
+                        model = input("Vehicle Model: ")
+                        if ECforModel(model):
+                            break
+                        else:
+                            continue
+                    while condition:
+                        colour = input("Vehicle Colour: ")
+                        if ECforColour(colour):
+                            break
+                        else:
+                            continue
+                    while condition:
+                        engine = input("Engine Capacity: ")
+                        if ECforEngine(engine):
+                            break
+                        else:
+                            continue
+                    if vType == "1":
+                        vehicle = registeredVehicle(registeredVehicle.CAR,
+                                                    regNum, maker,
+                                                    model, colour, engine)
+                    elif vType == "2":
+                        vehicle = registeredVehicle(registeredVehicle.MOTORCYCLE,
+                                                    regNum, maker, model,
+                                                    colour, engine)
+                    elif vType == "3":
+                        vehicle = registeredVehicle(registeredVehicle.TRUCK,
+                                                    regNum, maker, model,
+                                                    colour, engine)
+                    elif vType == "4":
+                        vehicle = registeredVehicle(registeredVehicle.BUS,
+                                                    regNum, maker, model,
+                                                    colour, engine)
+                    owner.addVehicle(vehicle)
+                    if len(owner.ownedVehicle) < 1:
+                        hashRV.hybridHashChaining(owner.ownedVehicle[0].getRegNum(), owner)
+                    else:
+                        hashRV.hybridHashChaining(owner.ownedVehicle[-1].getRegNum(),
+                                                  owner)
+                    break
                 break
-            else:
-                continue
-        while condition:  # pitstop for looping, so user don't have to retype
-            address = input("Address(without symbol): ")
-            if ECforAddress(address):
-                break
-            else:
-                continue
-        owner = VehicleOwner(name, ic, address)
-        print("______________________________________________________________")
-        condition = True
-        print("Please fill in the vehicle info below.")
-        while condition:
-            print("Choose your vehicle type:")
-            print("CAR--1 \nMOTORCYCLE--2 \nTRUCK--3 \nVAN--4")
-            vType = input("Vehicle Type(Number only): ")
-            if ECforVType(vType):
-                break
-            else:
-                continue
-        while condition:
-            regNum = input("Vehicle Register Number: ")
-            if ECforAddress(regNum):
-                break
-            else:
-                continue
-        while condition:  # implement vehicle info
-            maker = input("Vehicle Maker: ")
-            if ECforName(maker):
-                break
-            else:
-                continue
-        while condition:
-            model = input("Vehicle Model: ")
-            if ECforModel(model):
-                break
-            else:
-                continue
-        while condition:
-            colour = input("Vehicle Colour: ")
-            if ECforColour(colour):
-                break
-            else:
-                continue
-        while condition:
-            engine = input("Engine Capacity: ")
-            if ECforEngine(engine):
-                break
-            else:
-                continue
-        if vType == 1:
-            vehicle = registeredVehicle(registeredVehicle.CAR, regNum, maker,
-                                        model, colour, engine)
-        elif vType == 2:
-            vehicle = registeredVehicle(registeredVehicle.MOTORCYCLE, regNum,
-                                        maker, model, colour, engine)
-        elif vType == 3:
-            vehicle = registeredVehicle(registeredVehicle.TRUCK, regNum,
-                                        maker, model, colour, engine)
-        elif vType == 4:
-            vehicle = registeredVehicle(registeredVehicle.VAN, regNum,
-                                        maker, model, colour, engine)
-        owner.addVehicle(vehicle)
-        if len(owner.ownedVehicle) < 1:
-            hashRV.hybridHashChaining(owner.ownedVehicle[0].getRegNum(), owner)
+        elif choice == 3:
+            return True
         else:
-            hashRV.hybridHashChaining(owner.ownedVehicle[-1].getRegNum(),
-                                      owner)
-
-    elif choice == 2:  # Transfer vehicle ownership
-        pass
-    elif choice == 3:  # Search vehicle ownership, return owner detail
-        pass
-    elif choice == 4:  # exit system
-        pass
-    else:  # choice not in range
-        pass
+            print("Invalid input. Please try again.\n")
+            continue
 
 
-def createOwnerObj():
-    ownerObjs = []
-    for i in range(100):
-        ownerObj = 'owner_{}' .format(i)
-        ownerObjs.append(ownerObj)
-    return ownerObjs
+def ownershipTransfer(hashO, hashRV):
+    condition = True
+    while condition:
+        print("Is the new owner of the vehicle a non-registered owner or"
+              " a registered owner?")
+        print("For new owner, insert '1'.")
+        print("For existing owner, insert '2'.")
+        print("To leave insert, '3'.")
+        choice2 = input("Choice: ")
+        if choice2 == 1:
+            while condition:
+                inputOwnerDetail(owner, hashO)
+                break
+            while condition:
+                print("__________________________________________________")
+                print("Please enter the registration number of the"
+                      " vehicle.")
+                regNum = input("Registration Number: ")
+                existingOwner = hashRV.searchKey(regNum)
+                if len(existingOwner.ownedVehicle) is 1:
+                    existingOwner.transferVehicle(existingOwner.
+                                                  ownedVehicle[0],
+                                                  owner)
+                elif len(existingOwner.ownedVehicle) is not 0:
+                    for i in range(len(existingOwner.ownedVehicle)):
+                        if existingOwner.ownedVehicle[i].getRegNum()\
+                                == regNum:
+                            existingOwner.transferVehicle(existingOwner.
+                                                          ownedVehicle[i],
+                                                          owner)
+                        else:
+                            continue
+                else:
+                    break
+        elif choice2 == 2:
+            ic = input("Please insert existing owner IC/Passport:")
+            if isinstance(hashO.searchKey(ic), Person):
+                owner = hash0.searchKey(ic)
+                inputVehicleDetail(owner, vehicle, hashRV)
+            break
+        elif choice2 == 3:
+            condition = False
+            break
+        else:
+            print("Invalid input. Please try again.\n")
+            continue
 
 
-def createVehicleObj():
-    vehicleObjs = []
-    for i in range(100):
-        vehicleObj = 'vehicle_{}' .format(i)
-        vehicleObjs.append(vehicleObj)
-    return vehicleObjs
+def searchOwnerInfo(hashO, hashRV):
+    print("Please enter the following to search.")
+    regNum = input("Vehicle Registration Number: ")
+    owner = hashRV.searchKey(regNum)
+    if owner != 0:
+        print("Name: {}" .format(owner.getName()))
+        print("IC/Passport: {}" .format(owner.getIC()))
+        print("Address: {}" .format(owner.getAddress()))
+        print("Maker: {}" .format(owner.ownedVehicle[0].maker))
+        print("Model: {}" .format(owner.ownedVehicle[0].model))
+        print("Colour: {}" .format(owner.ownedVehicle[0].colour))
+        print("Engine Capacity: {}" .format(owner.ownedVehicle[0].engineCapacity))
+        print("Vehicle Registration Number: {}" .format(owner.ownedVehicle[0].getRegNum()))
+        print("Vehicle Type: {}" .format(owner.ownedVehicle[0].vehicleType))
+    else:
+        print("Vehicle Registration Number not found.\n")
+
+
+def main(hashO, hashRV):
+    while True:
+
+        showMenu()
+        try:
+            choice = int(input("Choice: "))
+        except ValueError:
+            print("Enter number only.\n")
+
+        if choice == 1:
+            newRegistration(hashO, hashRV)
+        elif choice == 2:
+            ownershipTransfer(hashO, hashRV)
+        elif choice == 3:
+            searchOwnerInfo(hashO, hashRV)
+        elif choice == 4:
+            print("Thank you for using JPJ Vehicle Ownership Registration"
+                  " System.\n")
+            return False
+        else:
+            print("Choose option 1-4 only.\n")
 
 
 if __name__ == "__main__":
-    p1 = vehicleOwner("Jane", "987654-07-2345",
-                      "8654, Medan bukit Marut 4, Testing 404, 10234,"
-                      " BaTe Lopir, P3uyre")
-    p2 = vehicleOwner("Mary", "927654-07-2345",
-                      "8634, Medan bukit Mirut 4, Testing 104, 10234,"
-                      " BaTe Lepir, P3uyre")
-    p3 = vehicleOwner("Mary1", "927654-07-2345",
-                      "8634, Medan bukit Mirut 4, Testing 104, 10234,"
-                      " BaTe Lepir, P3uyre")
-    p4 = vehicleOwner("Mary2", "927654-07-2345",
-                      "8634, Medan bukit Mirut 4, Testing 104, 10234,"
-                      " BaTe Lepir, P3uyre")
-    p5 = vehicleOwner("Mary3", "927654-07-2345",
-                      "8634, Medan bukit Mirut 4, Testing 104, 10234,"
-                      " BaTe Lepir, P3uyre")
-    p6 = vehicleOwner("Mary4", "927654-07-2345",
-                      "8634, Medan bukit Mirut 4, Testing 104, 10234,"
-                      " BaTe Lepir, P3uyre")
-    car1 = registeredVehicle(registeredVehicle.CAR, "P1234", "toyota",
-                             "camry", "red", "1.5L")
-
-    car2 = registeredVehicle(registeredVehicle.CAR, "P1324", "toyota",
-                             "camry", "bloodred", "2.5L")
-    car3 = registeredVehicle(registeredVehicle.CAR, "P1423", "toyota",
-                             "camry", "shinyred", "1.5L")
-    car4 = registeredVehicle(registeredVehicle.CAR, "P4321", "toyota",
-                             "camry", "superred", "1.5L")
-    car5 = registeredVehicle(registeredVehicle.CAR, "P2134", "toyota",
-                             "camry", "redredred", "1.5L")
-    car6 = registeredVehicle(registeredVehicle.CAR, "P2143", "toyota",
-                             "camry", "redredveryred", "1.5L")
-    p1.addVehicle(car1)
-#    p1.removeVehicle(car1)
-    p2.addVehicle(car2)
-    p3.addVehicle(car3)
-    p4.addVehicle(car4)
-    p5.addVehicle(car5)
-    p6.addVehicle(car6)
-#    p1.transferVehicle(car1, p2)
-
-    # print(p1.ownedVehicle[0].getRegNum())
-#    print(p1.ownerType)
-    # print(car1.getRegNum())
-    print("______________________________________________")
-#    print(p2.ownedVehicle[0].getRegNum())
-#    print(car2.getOwner()[0].getName())
-    # if len(p1.ownedVehicle) is None:
-    #     print("you did it")
-    # else:
-    #     print("you misunderstood None = 0")
-    #     print(len(p1.ownedVehicle))
-    h = HashRV(30)
-    h.hybridHashChaining(p1.ownedVehicle[0].getRegNum(), p1)
-    h.hybridHashChaining(p2.ownedVehicle[0].getRegNum(), p2)
-    h.hybridHashChaining(p3.ownedVehicle[0].getRegNum(), p3)
-    h.hybridHashChaining(p4.ownedVehicle[0].getRegNum(), p4)
-    h.hybridHashChaining(p5.ownedVehicle[0].getRegNum(), p5)
-    h.hybridHashChaining(p6.ownedVehicle[0].getRegNum(), p6)
-    h.displayHash()
-    # print(p6.ownedVehicle[0].getRegNum())
-    # obj = h.searchKey(p6.ownedVehicle[0].getRegNum())
-    obj = h.searchKey("123333333")
-    print("Name: {}" .format(obj.getName()))
-    print("IC/Passport: {}" .format(obj.getIC()))
-    print("Colour: {}" .format(obj.ownedVehicle[0].colour))
+    hashO = HashO(30)
+    hashRV = HashRV(30)
+    main(hashO, hashRV)
