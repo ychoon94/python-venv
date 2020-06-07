@@ -10,7 +10,7 @@ class Vehicle:
 
 
 class registeredVehicle(Vehicle):
-    CAR, MOTORCYCLE, TRUCK, VAN = range(4)
+    CAR, MOTORCYCLE, TRUCK, BUS = range(4)
 
     def __init__(self, vehicleType, regNum, *args, **kwargs):
         self.vehicleType = vehicleType

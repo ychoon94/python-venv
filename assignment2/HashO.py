@@ -11,19 +11,19 @@ class HashO:
         sumOfChar = 0
         for i in range(len(key)):
             sumOfChar += ord(key[i])
-            return sumOfChar % self.tableSize
+        return sumOfChar % self.tableSize
 
     def hash2(self, key):
         sumOfChar = 0
         for i in range(len(key)):
             sumOfChar += ord(key[i])
-            return 7 - (sumOfChar % 7)
+        return 7 - (sumOfChar % 7)
 
     def hybridHashChaining(self, key, value):
         index = self.hashFunction(key)
         if not self.table[index]:
             self.table[index].append([key, value])
-            print("Insert successfully.")
+            print("Insert successfully.\n")
         else:
             hash2 = self.hash2(key)
             notFound = True
@@ -32,22 +32,14 @@ class HashO:
                 index2 = (index + counter * hash2) % self.tableSize
                 if not self.table[index2]:
                     self.table[index2].append([key, value])
-                    print("Double Hashing execute attempt {}: h({}) + {}: {}- "
-                          "pass(insert successfully)"
-                          .format(counter, key, counter, index2))
                     notFound = False
                 else:
-                    print("Double Hashing execute attempt {}: h({}) + {}: {}-"
-                          "fail"
-                          .format(counter, key, counter, index2))
                     counter += 1
                     if counter > 3:
                         break
             if notFound:
                 counter = 1
-                print("Chaining execute attempt {}: h({}) + {}: {}- "
-                      "pass(insert successfully)"
-                      .format(counter, key, counter, index2))
+                print("Insert successfully.\n")
                 self.table[index2].append([key, value])
 
     def displayHash(self):
@@ -68,8 +60,6 @@ class HashO:
             if counter is 0:
                 if self.table[index]:  # check if the list is empty
                     try:
-                        print("Search executed at {} index. Try {}"
-                              .format(index, counter))
                         position = self.table[index][0].index(key)
                         notFound = False
                         return self.table[index][0][1]
@@ -78,15 +68,14 @@ class HashO:
                         counter += 1
                 else:
                     print("{} is not found in the system." .format(key))
-                    break
+                    notFound = False
+                    return 0
             # if not found in 1st loop, perform doubleHashing and search
             elif counter > 0 and counter <= 3:
                 hash2 = self.hash2(key)
                 index2 = (index + counter * hash2) % self.tableSize
                 if self.table[index2]:   # check if the list is empty
                     try:
-                        print("Search executed at {} index. Try {}"
-                              .format(index2, counter))
                         position = self.table[index2][0][0].index(key)
                         notFound = False
                         return self.table[index2][0][1]
@@ -94,25 +83,25 @@ class HashO:
                         notFound = True
                         counter += 1
                 else:
-                    print("{} is not found in the system." .format(key))
-                    break
+                    notFound = False
+                    return 0
             elif counter > 3:
-                for i in range(len(self.table[index2])):
+                for i in range(1, len(self.table[index2])):
                     if self.table[index2]:   # check if the list is empty
                         try:
-                            print("Search executed at {} index. Try {}"
-                                  .format(index2, counter))
                             position = self.table[index2][i][0].index(key)
                             notFound = False
+                            print("Value found")
                             return self.table[index2][i][1]
                         except ValueError:
-                            if i is not len(self.table[index2]):
+                            if (i+1) != len(self.table[index2]):
                                 continue
                             else:
                                 print("{} is not found in the system."
                                       .format(key))
-                                break
+                                notFound = False
+                                return 0
                     else:
                         print("{} is not found in the system." .format(key))
-                        break
+                        return 0
                     break

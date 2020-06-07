@@ -7,14 +7,9 @@ from os import system, name
 import pickle
 
 if __name__ == "__main__":
-    with open('hashowner.txt', 'rb') as input:
-        hashO = pickle.load(input)
-    with open('hashregvehicle.txt', 'rb') as input:
-        hashRV = pickle.load(input)
-
-    main(hashO, hashRV)
-
     with open('hashowner.txt', 'wb') as output:
+        hashO = HashO(30)
         pickle.dump(hashO, output, pickle.HIGHEST_PROTOCOL)
     with open('hashregvehicle.txt', 'wb') as output:
+        hashRV = HashRV(30)
         pickle.dump(hashRV, output, pickle.HIGHEST_PROTOCOL)

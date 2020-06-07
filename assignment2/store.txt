@@ -1,0 +1,65 @@
+p1 = vehicleOwner("Jane", "987654-07-2345",
+                    "8654, Medan bukit Marut 4, Testing 404, 10234,"
+                    " BaTe Lopir, P3uyre")
+  p2 = vehicleOwner("Mary", "927654-07-2345",
+                    "8634, Medan bukit Mirut 4, Testing 104, 10234,"
+                    " BaTe Lepir, P3uyre")
+  p3 = vehicleOwner("Mary1", "927654-07-2345",
+                    "8634, Medan bukit Mirut 4, Testing 104, 10234,"
+                    " BaTe Lepir, P3uyre")
+  p4 = vehicleOwner("Mary2", "927654-07-2345",
+                    "8634, Medan bukit Mirut 4, Testing 104, 10234,"
+                    " BaTe Lepir, P3uyre")
+  p5 = vehicleOwner("Mary3", "927654-07-2345",
+                    "8634, Medan bukit Mirut 4, Testing 104, 10234,"
+                    " BaTe Lepir, P3uyre")
+  p6 = vehicleOwner("Mary4", "927654-07-2345",
+                    "8634, Medan bukit Mirut 4, Testing 104, 10234,"
+                    " BaTe Lepir, P3uyre")
+  car1 = registeredVehicle(registeredVehicle.CAR, "P1234", "toyota",
+                           "camry", "red", "1.5L")
+
+  car2 = registeredVehicle(registeredVehicle.CAR, "P1324", "toyota",
+                           "camry", "bloodred", "2.5L")
+  car3 = registeredVehicle(registeredVehicle.CAR, "P1423", "toyota",
+                           "camry", "shinyred", "1.5L")
+  car4 = registeredVehicle(registeredVehicle.CAR, "P4321", "toyota",
+                           "camry", "superred", "1.5L")
+  car5 = registeredVehicle(registeredVehicle.CAR, "P2134", "toyota",
+                           "camry", "redredred", "1.5L")
+  car6 = registeredVehicle(registeredVehicle.CAR, "P2143", "toyota",
+                           "camry", "redredveryred", "1.5L")
+  # p1.addVehicle(car1)
+#    p1.removeVehicle(car1)
+  # p2.addVehicle(car2)
+  # p3.addVehicle(car3)
+  # p4.addVehicle(car4)
+  # p5.addVehicle(car5)
+  # p6.addVehicle(car6)
+#    p1.transferVehicle(car1, p2)
+
+  # print(p1.ownedVehicle[0].getRegNum())
+#    print(p1.ownerType)
+  # print(car1.getRegNum())
+  print("______________________________________________")
+#    print(p2.ownedVehicle[0].getRegNum())
+#    print(car2.getOwner()[0].getName())
+  # if len(p1.ownedVehicle) is None:
+  #     print("you did it")
+  # else:
+  #     print("you misunderstood None = 0")
+  #     print(len(p1.ownedVehicle))
+  # h = HashRV(30)
+  # h.hybridHashChaining(p1.ownedVehicle[0].getRegNum(), p1)
+  # h.hybridHashChaining(p2.ownedVehicle[0].getRegNum(), p2)
+  # h.hybridHashChaining(p3.ownedVehicle[0].getRegNum(), p3)
+  # h.hybridHashChaining(p4.ownedVehicle[0].getRegNum(), p4)
+  # h.hybridHashChaining(p5.ownedVehicle[0].getRegNum(), p5)
+  # h.hybridHashChaining(p6.ownedVehicle[0].getRegNum(), p6)
+  # h.displayHash()
+  # print(p6.ownedVehicle[0].getRegNum())
+  # obj = h.searchKey(p6.ownedVehicle[0].getRegNum())
+  # obj = h.searchKey("P12345")
+  # print("Name: {}" .format(obj.getName()))
+  # print("IC/Passport: {}" .format(obj.getIC()))
+  # print("Colour: {}" .format(obj.ownedVehicle[0].colour))
