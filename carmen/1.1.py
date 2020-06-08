@@ -1,4 +1,5 @@
 class hashTable:
+    
     def __init__(self):
         self.size = 30
         self.arr = [None] * self.size
@@ -73,8 +74,8 @@ class hashTable:
         indexFound = False
         value = self.arr[self.get_Hash(registrationNumber)]
         self.comparisons += 1
-        if(value[0] == registrationNumber):
-            return value[1]
+        if(value[0] == registrationNumber):  
+            return value[1]  
 
         else:
             limit = 60
@@ -127,9 +128,24 @@ class Vehicle(Owner):
         self.engineCcty = engineCapacity
         self.registrationNo = registrationNumber
 
+from hashTable import hashTable 
 
+def menu():
+    print("\nWelcome to the Vehicle Ownership Registration System.")
+    print(20* '*', 'MAIN MENU', 20* '*')
+    print('\n[A] Enter A to register new vehicle ownership')
+    print('[B] Enter B to transfer vehicle ownership')
+    print('[C] Enter C to search vehicle ownership')
+    print('[Q] Enter Q to exit System')
+    print('\t')
+    choice = input("***(Please enter your option [A-Q]): ")
+    print('')
 
 if __name__ == '__main__':
+    choice = menu()
+    if (choice == 'A' or choice == 'a'):
+        print('Register New Vehicle Ownership')
+        print('\t')
         name = input('1.Please enter your full name: ')
         ic = int(input('2.Please enter your IC or Passport number: '))
         address = input('3.Please enter your address: ')
@@ -141,12 +157,6 @@ if __name__ == '__main__':
         list1 = [vehicle1]
         print(list1)
         h = hashTable()
-        h.insert(RNo,vehicle1)
-        print("____________________________________")
-        print(h.search(RNo))
-        print("____________________________________")
-        foundObj = h.search(RNo)
-        print(foundObj.name)
         h.displayHash()
         #Another
         name = input('1.Please enter your full name: ')
@@ -160,9 +170,24 @@ if __name__ == '__main__':
         list1 = [vehicle1]
         print(list1)
         h.insert(RNo,vehicle1)
-        print("____________________________________")
+        h.displayHash()
+        
+    elif choice == 'B' or choice == 'b': 
+        print('Transfer Vehicle Ownership')
+    
+    elif choice == 'C' or choice == 'c':
+        print('Search Vehicle Ownership')
+        print(end = ' ')
         print(h.search(RNo))
         print("____________________________________")
         foundObj = h.search(RNo)
-        print(foundObj.icpassportNum)
-        h.displayHash()
+        print(foundObj.name)
+
+    elif (choice == 'Q' or choice == 'q'):
+        sys.exit()
+    else:
+        print('You must only enter either -> (A,B,C,or Q).')
+        print('Please reenter again')
+
+               
+        
