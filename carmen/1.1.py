@@ -73,9 +73,8 @@ class hashTable:
         indexFound = False
         value = self.arr[self.get_Hash(registrationNumber)]
         self.comparisons += 1
-        # the "value" already received the element inside array
-        if(value[0] == registrationNumber):  # value[0] is the registration number
-            return value[1]  # return vehicle object
+        if(value[0] == registrationNumber):
+            return value[1]
 
         else:
             limit = 60
@@ -130,25 +129,40 @@ class Vehicle(Owner):
 
 
 
-
 if __name__ == '__main__':
-    name = input('1.Please enter your full name: ')
-    ic = int(input('2.Please enter your IC or Passport number: '))
-    address = input('3.Please enter your address: ')
-    model = input("4.Please enter your vehicle's model: ")
-    color = input("5.Please enter your vehicle's color: ")
-    engineC = int(input("6.Please enter your vehicle's engine capacity: "))
-    RNo = input("7.Please enter your vehicle's registration number: ")
-    vehicle1 = Vehicle(name, ic, address, model, color, engineC, RNo)
-    list = [vehicle1]
-    print(list)
-    h = hashTable()
-    h.insert(RNo,vehicle1)
-    print("____________________________________")
-    print(h.search(RNo))  # returned object, now you can choose what to do with the object
-    print("____________________________________")
-    # example you can do
-    foundObj = h.search(RNo)
-    print(foundObj.name)
-    # print(list[0].name)
-    h.displayHash()
+        name = input('1.Please enter your full name: ')
+        ic = int(input('2.Please enter your IC or Passport number: '))
+        address = input('3.Please enter your address: ')
+        model = input("4.Please enter your vehicle's model: ")
+        color = input("5.Please enter your vehicle's color: ")
+        engineC = int(input("6.Please enter your vehicle's engine capacity: "))
+        RNo = input("7.Please enter your vehicle's registration number: ")
+        vehicle1 = Vehicle(name, ic, address, model, color, engineC, RNo)
+        list1 = [vehicle1]
+        print(list1)
+        h = hashTable()
+        h.insert(RNo,vehicle1)
+        print("____________________________________")
+        print(h.search(RNo))
+        print("____________________________________")
+        foundObj = h.search(RNo)
+        print(foundObj.name)
+        h.displayHash()
+        #Another
+        name = input('1.Please enter your full name: ')
+        ic = int(input('2.Please enter your IC or Passport number: '))
+        address = input('3.Please enter your address: ')
+        model = input("4.Please enter your vehicle's model: ")
+        color = input("5.Please enter your vehicle's color: ")
+        engineC = int(input("6.Please enter your vehicle's engine capacity: "))
+        RNo = input("7.Please enter your vehicle's registration number: ")
+        vehicle1 = Vehicle(name, ic, address, model, color, engineC, RNo)
+        list1 = [vehicle1]
+        print(list1)
+        h.insert(RNo,vehicle1)
+        print("____________________________________")
+        print(h.search(RNo))
+        print("____________________________________")
+        foundObj = h.search(RNo)
+        print(foundObj.icpassportNum)
+        h.displayHash()

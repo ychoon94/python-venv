@@ -6,8 +6,20 @@ from Menu import *
 from os import system, name
 
 
+# define our clear function
+def clear():
+
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = clear()
+
+
 def showMenu():
-    system('clear')
+    clear()
     print("__________________________________________________________")
     print("|  Welcome to JPJ Vehicle Ownership Registration System. |")
     this_is_a_dashing_line()
@@ -64,7 +76,7 @@ def ECforIC(value):
 def ECforAddress(value):
     value = value.upper()
     counter = 0
-    if not len(value) <= 5:
+    if not len(value) <= 4:
         for i in range(len(value)):
             if (ord(value[i]) >= 65 and ord(value[i]) <= 90) \
                or (ord(value[i]) >= 48 and ord(value[i]) <= 57) \
@@ -176,7 +188,7 @@ def newRegistration(hashO, hashRV):
         print("To leave insert, '3'.")
         choice = input("Choice: ")
         this_is_a_line()
-        system('clear')
+        clear()
         if choice == "1":
             while condition:
                 condition = True
@@ -282,7 +294,7 @@ def newRegistration(hashO, hashRV):
                 else:
                     hashRV.hybridHashChaining(owner.ownedVehicle[-1].getRegNum(),
                                               owner)
-                system("clear")
+                clear()
                 break
         elif choice == "2":
             condition = True
@@ -379,7 +391,7 @@ def ownershipTransfer(hashO, hashRV):
         print("For existing owner, insert '2'.")
         print("To leave insert, '3'.")
         choice2 = input("Choice: ")
-        system("clear")
+        clear()
         if choice2 == "1":
             while condition:
                 inputOwnerDetail(owner, hashO)
@@ -480,7 +492,7 @@ def this_is_a_line():
 
 def main(hashO, hashRV):
     while True:
-        system("clear")
+        clear()
         showMenu()
         try:
             choice = int(input("Choice: "))
@@ -488,16 +500,16 @@ def main(hashO, hashRV):
             print("Enter number only.\n")
 
         if choice == 1:
-            system('clear')
+            clear()
             newRegistration(hashO, hashRV)
         elif choice == 2:
-            system('clear')
+            clear()
             ownershipTransfer(hashO, hashRV)
         elif choice == 3:
-            system('clear')
+            clear()
             searchOwnerInfo(hashO, hashRV)
         elif choice == 4:
-            system('clear')
+            clear()
             print("Thank you for using JPJ Vehicle Ownership Registration"
                   " System.\n")
             return False
