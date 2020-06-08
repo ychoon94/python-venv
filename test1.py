@@ -75,7 +75,13 @@ object4
 
 T = ["owner1", 123123, 45, 57, 345, 57, 745, 456, 345, 7643, 3234, 23456]
 
+newRegNum = "P1234"
 
+for obj in mylist:
+    if newRegNum not in obj.getRegNum():
+        p4.setRegNum(newRegNum)
+    else:
+        print("fail to input")
 
 
 #T2 = []
