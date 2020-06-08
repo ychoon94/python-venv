@@ -7,8 +7,10 @@ from os import system, name
 
 
 def showMenu():
-    print("Welcome to JPJ Vehicle Ownership Registration System.")
-    this_is_a_line()
+    system('clear')
+    print("__________________________________________________________")
+    print("|  Welcome to JPJ Vehicle Ownership Registration System. |")
+    this_is_a_dashing_line()
     print("Please choose a task to perform: ")
     print("1. Register new vehicle ownership")
     print("2. Transfer vehicle ownership")
@@ -174,6 +176,7 @@ def newRegistration(hashO, hashRV):
         print("To leave insert, '3'.")
         choice = input("Choice: ")
         this_is_a_line()
+        system('clear')
         if choice == "1":
             while condition:
                 condition = True
@@ -279,6 +282,7 @@ def newRegistration(hashO, hashRV):
                 else:
                     hashRV.hybridHashChaining(owner.ownedVehicle[-1].getRegNum(),
                                               owner)
+                system("clear")
                 break
         elif choice == "2":
             condition = True
@@ -375,6 +379,7 @@ def ownershipTransfer(hashO, hashRV):
         print("For existing owner, insert '2'.")
         print("To leave insert, '3'.")
         choice2 = input("Choice: ")
+        system("clear")
         if choice2 == "1":
             while condition:
                 inputOwnerDetail(owner, hashO)
@@ -424,13 +429,21 @@ def searchOwnerInfo(hashO, hashRV):
         print("Address: {}" .format(owner.getAddress()))
         this_is_a_line()
         print("Vehicle Detail for {} vehicle below." .format(len(owner.ownedVehicle)))
+        this_is_a_dashing_line()
         if len(owner.ownedVehicle) == 1:
             print("Maker: {}" .format(owner.ownedVehicle[0].maker))
             print("Model: {}" .format(owner.ownedVehicle[0].model))
             print("Colour: {}" .format(owner.ownedVehicle[0].colour))
             print("Engine Capacity: {}" .format(owner.ownedVehicle[0].engineCapacity))
             print("Vehicle Registration Number: {}" .format(owner.ownedVehicle[0].getRegNum()))
-            print("Vehicle Type: {}" .format(owner.ownedVehicle[0].vehicleType))
+            if owner.ownedVehicle[0].vehicleType == 0:
+                print("Vehicle Type: {}" .format("CAR"))
+            elif owner.ownedVehicle[0].vehicleType == 1:
+                print("Vehicle Type: {}" .format("MOTORCYCLE"))
+            elif owner.ownedVehicle[0].vehicleType == 2:
+                print("Vehicle Type: {}" .format("TRUCK"))
+            elif owner.ownedVehicle[0].vehicleType == 3:
+                print("Vehicle Type: {}" .format("BUS"))
         elif len(owner.ownedVehicle) > 1:
             for i in range(len(owner.ownedVehicle)):
                 print("Maker: {}" .format(owner.ownedVehicle[i].maker))
@@ -438,20 +451,36 @@ def searchOwnerInfo(hashO, hashRV):
                 print("Colour: {}" .format(owner.ownedVehicle[i].colour))
                 print("Engine Capacity: {}" .format(owner.ownedVehicle[i].engineCapacity))
                 print("Vehicle Registration Number: {}" .format(owner.ownedVehicle[i].getRegNum()))
-                print("Vehicle Type: {}" .format(owner.ownedVehicle[i].vehicleType))
+                if owner.ownedVehicle[i].vehicleType == 0:
+                    print("Vehicle Type: {}" .format("CAR"))
+                elif owner.ownedVehicle[i].vehicleType == 1:
+                    print("Vehicle Type: {}" .format("MOTORCYCLE"))
+                elif owner.ownedVehicle[i].vehicleType == 2:
+                    print("Vehicle Type: {}" .format("TRUCK"))
+                elif owner.ownedVehicle[i].vehicleType == 3:
+                    print("Vehicle Type: {}" .format("BUS"))
+
+                this_is_a_line()
     else:
         print("Vehicle Registration Number not found.\n")
+    try:
+        input("Press Enter to continue...")
+    except SyntaxError:
+        pass
+
+def this_is_a_dashing_line():
+    print("----------------------------------------------------------")
+    print("\n")
 
 
 def this_is_a_line():
-    print("\n")
-    print("__________________________________________________________________")
+    print("__________________________________________________________")
     print("\n")
 
 
 def main(hashO, hashRV):
     while True:
-
+        system("clear")
         showMenu()
         try:
             choice = int(input("Choice: "))

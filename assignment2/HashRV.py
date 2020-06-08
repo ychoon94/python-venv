@@ -67,6 +67,7 @@ class HashRV:
                         counter += 1
                 else:
                     print("{} is not found in the system." .format(key))
+                    print("Please proceed.")
                     notFound = False
                     return 0
             # if not found in 1st loop, perform doubleHashing and search
@@ -83,6 +84,7 @@ class HashRV:
                         counter += 1
                 else:
                     print("{} is not found in the system." .format(key))
+                    print("Please proceed.")
                     notFound = False
                     return 0
             elif counter > 3:
@@ -91,7 +93,7 @@ class HashRV:
                         try:
                             position = self.table[index2][i][0].index(key)
                             notFound = False
-                            print("Value found")
+                            print("Value found.\n")
                             return self.table[index2][i][1]
                         except ValueError:
                             if (i+1) != len(self.table[index2]):
@@ -99,9 +101,11 @@ class HashRV:
                             else:
                                 print("{} is not found in the system."
                                       .format(key))
+                                print("Please proceed.")
                                 notFound = False
                                 return 0
                     else:
                         print("{} is not found in the system." .format(key))
+                        print("Please proceed.")
                         return 0
                     break
