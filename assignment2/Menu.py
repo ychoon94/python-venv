@@ -15,7 +15,7 @@ def clear():
 
     # for mac and linux(here, os.name is 'posix')
     else:
-        _ = clear()
+        _ = system("clear")
 
 
 def showMenu():
