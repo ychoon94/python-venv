@@ -24,7 +24,6 @@ def pause():
 
 def this_is_a_dashing_line():
     print("----------------------------------------------------------")
-    print("\n")
 
 
 def bubbleSort(array, option):
@@ -124,22 +123,28 @@ def reverseMergeSort(array):
 
 
 def ascendingList():
-    mylist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-              19, 20]
+    counter = 0
+    mylist = []
+    for i in range(1000):
+        mylist.append(counter)
+        counter += 1
     return mylist
 
 
 def descendingList():
-    mylist = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4,
-              3, 2, 1]
+    counter = 1000
+    mylist = []
+    for i in range(1000):
+        mylist.append(counter)
+        counter -= 1
     return mylist
 
 
 def randomList():
     mylist = []
     random.seed(1)
-    for i in range(20):
-        mylist.append(random.randint(1, 100))
+    for i in range(1000):
+        mylist.append(random.randint(1, 1000))
     return mylist
 
 
@@ -243,99 +248,117 @@ def optionInnerMost(choice1, choice2):
                 clear()
                 print("Original List = {}" .format(ascendingList()))
                 this_is_a_dashing_line()
+                ascending = ascendingList()
                 starttime = timeit.default_timer()
-                sortedList = insertionSort(ascendingList(), choice3)
+                sortedList = insertionSort(ascending, choice3)
+                timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 1 and choice2 == 2:
                 clear()
                 print("Original List = {}" .format(descendingList()))
                 this_is_a_dashing_line()
+                descending = descendingList()
                 starttime = timeit.default_timer()
-                sortedList = insertionSort(descendingList(), choice3)
+                sortedList = insertionSort(descending, choice3)
+                timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}".format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 1 and choice2 == 3:
                 clear()
                 print("Original List = {}" .format(randomList()))
                 this_is_a_dashing_line()
+                random = randomList()
                 starttime = timeit.default_timer()
-                sortedList = insertionSort(randomList(), choice3)
-                print("Sorted List = {}".format(sortedList))
+                sortedList = insertionSort(random, choice3)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 2 and choice2 == 1:
                 clear()
                 print("Original List = {}" .format(ascendingList()))
                 this_is_a_dashing_line()
+                ascending = ascendingList()
                 starttime = timeit.default_timer()
-                sortedList = bubbleSort(ascendingList(), choice3)
-                print("Sorted List = {}".format(sortedList))
+                sortedList = bubbleSort(ascending, choice3)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 2 and choice2 == 2:
                 clear()
                 print("Original List = {}" .format(descendingList()))
                 this_is_a_dashing_line()
+                descending = descendingList()
                 starttime = timeit.default_timer()
-                sortedList = bubbleSort(descendingList(), choice3)
-                print("Sorted List = {}".format(sortedList))
+                sortedList = bubbleSort(descending, choice3)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 2 and choice2 == 3:
                 clear()
                 print("Original List = {}" .format(randomList()))
                 this_is_a_dashing_line()
+                random = randomList()
                 starttime = timeit.default_timer()
-                sortedList = bubbleSort(randomList(), choice3)
-                print("Sorted List = {}".format(sortedList))
+                sortedList = bubbleSort(random, choice3)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 3 and choice2 == 1:
                 clear()
                 print("Original List = {}" .format(ascendingList()))
                 this_is_a_dashing_line()
+                ascending = ascendingList()
                 starttime = timeit.default_timer()
-                sortedList = mergeSort(ascendingList())
-                print("Sorted List = {}".format(sortedList))
+                sortedList = mergeSort(ascending)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 3 and choice2 == 2:
                 clear()
                 print("Original List = {}" .format(descendingList()))
                 this_is_a_dashing_line()
+                descending = descendingList()
                 starttime = timeit.default_timer()
-                sortedList = mergeSort(descendingList())
-                print("Sorted List = {}".format(sortedList))
+                sortedList = mergeSort(descending)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 3 and choice2 == 3:
                 clear()
                 print("Original List = {}" .format(randomList()))
                 this_is_a_dashing_line()
+                random = randomList()
                 starttime = timeit.default_timer()
-                sortedList = mergeSort(randomList())
-                print("Sorted List = {}".format(sortedList))
+                sortedList = mergeSort(random)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
         elif choice3 == 2:
@@ -343,99 +366,117 @@ def optionInnerMost(choice1, choice2):
                 clear()
                 print("Original List = {}" .format(ascendingList()))
                 this_is_a_dashing_line()
+                ascending = ascendingList()
                 starttime = timeit.default_timer()
-                sortedList = insertionSort(ascendingList(), choice3)
-                print("Sorted List = {}".format(sortedList))
+                sortedList = insertionSort(ascending, choice3)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 1 and choice2 == 2:
                 clear()
                 print("Original List = {}" .format(descendingList()))
                 this_is_a_dashing_line()
+                descending = descendingList()
                 starttime = timeit.default_timer()
-                sortedList = insertionSort(descendingList(), choice3)
-                print("Sorted List = {}".format(sortedList))
+                sortedList = insertionSort(descending, choice3)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 1 and choice2 == 3:
                 clear()
                 print("Original List = {}" .format(randomList()))
                 this_is_a_dashing_line()
+                random = randomList()
                 starttime = timeit.default_timer()
-                sortedList = insertionSort(randomList(), choice3)
-                print("Sorted List = {}".format(sortedList))
+                sortedList = insertionSort(random, choice3)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 2 and choice2 == 1:
                 clear()
                 print("Original List = {}" .format(ascendingList()))
                 this_is_a_dashing_line()
+                ascending = ascendingList()
                 starttime = timeit.default_timer()
-                sortedList = bubbleSort(ascendingList(), choice3)
-                print("Sorted List = {}".format(sortedList))
+                sortedList = bubbleSort(ascending, choice3)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 2 and choice2 == 2:
                 clear()
                 print("Original List = {}" .format(descendingList()))
                 this_is_a_dashing_line()
+                descending = descendingList()
                 starttime = timeit.default_timer()
-                sortedList = bubbleSort(descendingList(), choice3)
-                print("Sorted List = {}".format(sortedList))
+                sortedList = bubbleSort(descending, choice3)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 2 and choice2 == 3:
                 clear()
                 print("Original List = {}" .format(randomList()))
                 this_is_a_dashing_line()
+                random = randomList()
                 starttime = timeit.default_timer()
-                sortedList = bubbleSort(randomList(), choice3)
-                print("Sorted List = {}".format(sortedList))
+                sortedList = bubbleSort(random, choice3)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 3 and choice2 == 1:
                 clear()
                 print("Original List = {}" .format(ascendingList()))
                 this_is_a_dashing_line()
+                ascending = ascendingList()
                 starttime = timeit.default_timer()
-                sortedList = reverseMergeSort(ascendingList())
-                print("Sorted List = {}".format(sortedList))
+                sortedList = reverseMergeSort(ascending)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 3 and choice2 == 2:
                 clear()
                 print("Original List = {}" .format(descendingList()))
                 this_is_a_dashing_line()
+                descending = descendingList()
                 starttime = timeit.default_timer()
-                sortedList = reverseMergeSort(descendingList())
-                print("Sorted List = {}".format(sortedList))
+                sortedList = reverseMergeSort(descending)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
             elif choice1 == 3 and choice2 == 3:
                 clear()
                 print("Original List = {}" .format(randomList()))
                 this_is_a_dashing_line()
+                random = randomList()
                 starttime = timeit.default_timer()
-                sortedList = reverseMergeSort(randomList())
-                print("Sorted List = {}".format(sortedList))
+                sortedList = reverseMergeSort(random)
+                timeDiff = timeit.default_timer() - starttime
+                print("Sorted List = {}" .format(sortedList))
                 print("It took {} second to finish sorting."
-                      .format(timeit.default_timer() - starttime))
+                      .format(timeDiff))
                 pause()
 
         elif choice3 == 3:
