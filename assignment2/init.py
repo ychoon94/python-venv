@@ -1,3 +1,5 @@
+# Program to initialise the save file.
+
 from Vehicle import *
 from Person import *
 from HashRV import *

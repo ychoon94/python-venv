@@ -1,3 +1,6 @@
+# The controller modules for every function and object creations
+# happens in the main program.
+
 from Vehicle import *
 from Person import *
 from HashRV import *

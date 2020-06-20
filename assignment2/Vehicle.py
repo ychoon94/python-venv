@@ -1,3 +1,5 @@
+# Modules for Vehicle class and its inherit children
+
 from Person import *
 
 
