@@ -1,3 +1,8 @@
+# hashing class to store Registered Vehicle
+# here it convert user vehicle register number to hash key
+# then stores both vehicle register number and vehicle owner object in a list
+# the hashing structure use here are double hashing and chaining
+
 class HashRV:
 
     def __init__(self, size):

@@ -1,3 +1,8 @@
+# hashing class to store Owner info
+# here it convert user IC/Passport number to hash key
+# then stores both IC and owner object in a list
+# the hashing structure use here are double hashing and chaining
+
 class HashO:
 
     def __init__(self, size):
