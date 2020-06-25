@@ -2,8 +2,7 @@
 
 from Vehicle import *
 from Person import *
-from HashRV import *
-from HashO import *
+from Hash import *
 from Menu import *
 from os import system, name
 import pickle

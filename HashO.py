@@ -1,9 +1,9 @@
-# hashing class to store Registered Vehicle
-# here it convert user vehicle register number to hash key
-# then stores both vehicle register number and vehicle owner object in a list
+# hashing class to store Owner info
+# here it convert user IC/Passport number to hash key
+# then stores both IC and owner object in a list
 # the hashing structure use here are double hashing and chaining
 
-class HashRV:
+class HashO:
 
     def __init__(self, size):
         self.key = None
@@ -44,6 +44,7 @@ class HashRV:
                         break
             if notFound:
                 counter = 1
+                print("Insert successfully.\n")
                 self.table[index2].append([key, value])
 
     def displayHash(self):
@@ -88,7 +89,8 @@ class HashRV:
                         notFound = True
                         counter += 1
                 else:
-                    print("{} is not found in the system." .format(key))
+                    print("{} is not found in the system."
+                          .format(key))
                     print("Please proceed.")
                     notFound = False
                     return 0

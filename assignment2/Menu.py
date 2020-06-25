@@ -3,8 +3,7 @@
 
 from Vehicle import *
 from Person import *
-from HashRV import *
-from HashO import *
+from Hash import *
 from Menu import *
 from os import system, name
 
@@ -193,8 +192,8 @@ def newRegistration(hashO, hashRV):
         this_is_a_line()
         clear()
         if choice == "1":
-            while condition:
-                condition = True
+            condition1 = True
+            while condition1:
                 print("Please fill in owner info below.")
                 while condition:  # pitstop for looping, so user don't
                                   # have to retype
@@ -204,26 +203,29 @@ def newRegistration(hashO, hashRV):
                               " vehicle owner.")
                         print("Please go to existing vehicle owner"
                               " section.")
+                        condition1 = False
                         break
                     else:
                         if ECforIC(ic):
                             break
                         else:
                             continue
-                while condition:  # pitstop for looping, so user don't
+                    break
+                while condition1:  # pitstop for looping, so user don't
                                   # have to retype
                     name = input("Name: ")
                     if ECforName(name):
                         break
                     else:
                         continue
-                while condition:  # pitstop for looping, so user don't
+                while condition1:  # pitstop for looping, so user don't
                                   # have to retype
                     address = input("Address(without symbol): ")
                     if ECforAddress(address):
                         break
                     else:
                         continue
+                break
                 owner = vehicleOwner(name, ic, address)
                 hashO.hybridHashChaining(owner.getIC(), owner)
                 this_is_a_line()
