@@ -6,6 +6,7 @@ from Person import *
 from Hash import *
 from Menu import *
 from os import system, name
+import time
 
 
 # define our clear function
@@ -20,10 +21,23 @@ def clear():
         _ = system("clear")
 
 
-def showMenu():
+def pause():
+    try:
+        input("Press Enter to continue...")
+    except SyntaxError:
+        pass
+
+
+def title():
     clear()
     print("__________________________________________________________")
     print("|  Welcome to JPJ Vehicle Ownership Registration System. |")
+    this_is_a_dashing_line()
+
+
+def showMenu():
+    title()
+    print("Main Menu")
     this_is_a_dashing_line()
     print("Please choose a task to perform: ")
     print("1. Register new vehicle ownership")
@@ -32,10 +46,11 @@ def showMenu():
     print("4. Exit System")
 
 
+# error checking function for name
 def ECforName(value):
     value = value.upper()
     counter = 0
-    if not len(value) <= 5:
+    if not len(value) <= 4:
         for i in range(len(value)):
             if (ord(value[i]) >= 65 and ord(value[i]) <= 90) \
                or ord(value[i]) == 32:
@@ -43,16 +58,17 @@ def ECforName(value):
             else:
                 counter += 1
     else:
-        print("Input too short.\nPlease try again.")
+        print("\nInput too short.\nPlease try again.\n")
         return False
 
     if counter > 0:
-        print("Input contain non-alphabet.\nPlease try again.")
+        print("\nInput contain non-alphabet.\nPlease try again.\n")
         return False
     else:
         return True
 
 
+# error checking function for IC
 def ECforIC(value):
     value = value.upper()
     counter = 0
@@ -65,16 +81,17 @@ def ECforIC(value):
             else:
                 counter += 1
     else:
-        print("Input too short.\nPlease try again.")
+        print("\nStructure is wrong.\nPlease try again.\n")
         return False
 
     if counter > 0:
-        print("Input contains symbols.\nPlease try again.")
+        print("\nInput contains symbols.\nPlease try again.\n")
         return False
     else:
         return True
 
 
+# error checking function for address
 def ECforAddress(value):
     value = value.upper()
     counter = 0
@@ -87,16 +104,17 @@ def ECforAddress(value):
             else:
                 counter += 1
     else:
-        print("Input too short.\nPlease try again.")
+        print("\nInput too short.\nPlease try again.\n")
         return False
 
     if counter > 0:
-        print("Input contain non-alphabet.\nPlease try again.")
+        print("\nInput contain non-alphanumberic.\nPlease try again.\n")
         return False
     else:
         return True
 
 
+# error checking function for vehicle type
 def ECforVType(value):
     counter = 0
     if len(value) == 1:
@@ -106,16 +124,17 @@ def ECforVType(value):
             else:
                 counter += 1
     else:
-        print("Please enter choice from 1 to 4.\nPlease try again.")
+        print("\nPlease enter choice from 1 to 4.\nPlease try again.\n")
         return False
 
     if counter > 0:
-        print("Please enter choice from 1 to 4.\nPlease try again.")
+        print("\nPlease enter choice from 1 to 4.\nPlease try again.\n")
         return False
     else:
         return True
 
 
+# error checking function for vehicle model
 def ECforModel(value):
     value = value.upper()
     counter = 0
@@ -128,16 +147,17 @@ def ECforModel(value):
             else:
                 counter += 1
     else:
-        print("Model name too short to recognize.\nPlease try again.")
+        print("\nModel name too short to recognize.\nPlease try again.\n")
         return False
 
     if counter > 0:
-        print("Input contains symbols.\nPlease try again.")
+        print("\nInput contains symbols.\nPlease try again.\n")
         return False
     else:
         return True
 
 
+# error checking function for vehicle colour
 def ECforColour(value):
     value = value.upper()
     counter = 0
@@ -149,19 +169,20 @@ def ECforColour(value):
             else:
                 counter += 1
     else:
-        print("Input too short.\nPlease try again.")
+        print("\nInput too short.\nPlease try again.\n")
         return False
 
     if counter > 0:
-        print("Input contain non-alphabet.\nPlease try again.")
+        print("\nInput contain non-alphabet.\nPlease try again.\n")
         return False
     else:
         return True
 
 
+# error checking functions for engine value
 def ECforEngine(value):
     counter = 0
-    if len(value) <= 4:
+    if len(value) <= 4 and len(value) > 0:
         for i in range(len(value)):
             if ord(value[i]) == 46 or \
              (ord(value[i]) >= 48 and ord(value[i]) <= 57):
@@ -169,11 +190,11 @@ def ECforEngine(value):
             else:
                 counter += 1
     else:
-        print("Input too long.\nPlease try again.")
+        print("\nInput too short.\nPlease try again.\n")
         return False
 
     if counter > 0:
-        print("Input contains symbols or alphabet.\nPlease try again.")
+        print("\nInput contains symbols or alphabet.\nPlease try again.\n")
         return False
     else:
         return True
@@ -181,20 +202,26 @@ def ECforEngine(value):
 
 def newRegistration(hashO, hashRV):
     condition = True
-    while condition:
+    while True:
         this_is_a_line()
-        print("Is this a new owner vehicle registration or"
-              " existing owner vehicle registration?")
-        print("For new owner, insert '1'.")
-        print("For existing owner, insert '2'.")
-        print("To leave insert, '3'.")
+        title()
+        print("Register new vehicle ownership")
+        this_is_a_dashing_line()
+        print("Please choose an owner type before proceed: ")
+        print("1. New Owner")
+        print("2. Existing Owner")
+        print("3. Return to previous menu")
         choice = input("Choice: ")
         this_is_a_line()
-        clear()
         if choice == "1":
-            condition1 = True
-            while condition1:
-                print("Please fill in owner info below.")
+            clear()
+            condition = True
+            while condition:
+                title()
+                print("Register New Vehicle")
+                print("New owner option is selected.")
+                this_is_a_line()
+                print("Please fill in owner info below.\n")
                 while condition:  # pitstop for looping, so user don't
                                   # have to retype
                     ic = input("IC(eg. yymmdd-ss-nnnn)/Passport: ")
@@ -203,34 +230,35 @@ def newRegistration(hashO, hashRV):
                               " vehicle owner.")
                         print("Please go to existing vehicle owner"
                               " section.")
-                        condition1 = False
+                        condition = False
                         break
                     else:
                         if ECforIC(ic):
                             break
                         else:
                             continue
+                if condition is False:
+                    pause()
                     break
-                while condition1:  # pitstop for looping, so user don't
+                while condition:  # pitstop for looping, so user don't
                                   # have to retype
                     name = input("Name: ")
                     if ECforName(name):
                         break
                     else:
                         continue
-                while condition1:  # pitstop for looping, so user don't
+                while condition:  # pitstop for looping, so user don't
                                   # have to retype
                     address = input("Address(without symbol): ")
                     if ECforAddress(address):
                         break
                     else:
                         continue
-                break
                 owner = vehicleOwner(name, ic, address)
                 hashO.hybridHashChaining(owner.getIC(), owner)
                 this_is_a_line()
                 condition = True
-                print("Please fill in the vehicle info below.")
+                print("Please fill in the vehicle info below.\n")
                 while condition:
                     print("Choose your vehicle type:")
                     print("CAR--1 \nMOTORCYCLE--2 \nTRUCK--3 \nVAN--4")
@@ -242,7 +270,7 @@ def newRegistration(hashO, hashRV):
                 while condition:
                     regNum = input("Vehicle Register Number: ")
                     if isinstance(hashRV.searchKey(regNum),
-                                  registeredVehicle):
+                                  vehicleOwner):
                         print("This vehicle register number has been"
                               " registered before.")
                         print("Please insert a new vehicle register"
@@ -299,16 +327,28 @@ def newRegistration(hashO, hashRV):
                 else:
                     hashRV.hybridHashChaining(owner.ownedVehicle[-1].getRegNum(),
                                               owner)
+                pause()
                 clear()
                 break
         elif choice == "2":
+            clear()
             condition = True
             while condition:
+                title()
+                print("Register New Vehicle")
+                print("Existing owner option is selected.")
+                this_is_a_dashing_line()
                 ic = input("Please insert existing owner IC/Passport:")
+                if ECforIC(ic):
+                    pass
+                else:
+                    time.sleep(2.5)
+                    continue
                 if isinstance(hashO.searchKey(ic), Person):
                     owner = hashO.searchKey(ic)
                     this_is_a_line()
                     condition = True
+                    print("Add new vehicle")
                     print("Please fill in the vehicle info below.")
                     while condition:
                         print("Choose your vehicle type:")
@@ -321,11 +361,12 @@ def newRegistration(hashO, hashRV):
                     while condition:
                         regNum = input("Vehicle Register Number: ")
                         if isinstance(hashRV.searchKey(regNum),
-                                      registeredVehicle):
+                                      vehicleOwner):
                             print("This vehicle register number has been"
                                   " registered before.")
                             print("Please insert a new vehicle register"
                                   " number to check for availability.")
+                            pause()
                             continue
                         else:
                             if ECforAddress(regNum):
@@ -378,28 +419,73 @@ def newRegistration(hashO, hashRV):
                     else:
                         hashRV.hybridHashChaining(owner.ownedVehicle[-1].getRegNum(),
                                                   owner)
+                    pause()
                     break
-                break
+                else:
+                    pause()
+                    break
         elif choice == "3":
             return True
         else:
-            print("Invalid input. Please try again.\n")
+            print("\nInvalid input. Please try again.\n")
+            time.sleep(3)
             continue
 
 
 def ownershipTransfer(hashO, hashRV):
     condition = True
     while condition:
-        print("Is the new owner of the vehicle a non-registered owner or"
-              " a registered owner?")
-        print("For new owner, insert '1'.")
-        print("For existing owner, insert '2'.")
-        print("To leave insert, '3'.")
+        title()
+        print("Transfer vehicle ownership")
+        this_is_a_dashing_line()
+        print("Please choose an owner type before proceed: ")
+        print("1. New Owner")
+        print("2. Existing Owner")
+        print("3. Return to previous menu")
         choice2 = input("Choice: ")
-        clear()
         if choice2 == "1":
+            clear()
             while condition:
-                inputOwnerDetail(owner, hashO)
+                title()
+                print("Transfer vehicle ownership")
+                print("New owner option is selected.")
+                this_is_a_line()
+                print("Please fill in owner info below.\n")
+                while condition:  # pitstop for looping, so user don't
+                                  # have to retype
+                    ic = input("IC(eg. yymmdd-ss-nnnn)/Passport: ")
+                    if isinstance(hashO.searchKey(ic), Person):
+                        print("This IC/Passport belongs to existing"
+                              " vehicle owner.")
+                        print("Please go to existing vehicle owner"
+                              " section.")
+                        condition = False
+                        break
+                    else:
+                        if ECforIC(ic):
+                            break
+                        else:
+                            continue
+                if condition is False:
+                    pause()
+                    break
+                while condition:  # pitstop for looping, so user don't
+                                  # have to retype
+                    name = input("Name: ")
+                    if ECforName(name):
+                        break
+                    else:
+                        continue
+                while condition:  # pitstop for looping, so user don't
+                                  # have to retype
+                    address = input("Address(without symbol): ")
+                    if ECforAddress(address):
+                        break
+                    else:
+                        continue
+                owner = vehicleOwner(name, ic, address)
+                hashO.hybridHashChaining(owner.getIC(), owner)
+                this_is_a_line()
                 break
             while condition:
                 this_is_a_line()
@@ -407,36 +493,96 @@ def ownershipTransfer(hashO, hashRV):
                       " vehicle.")
                 regNum = input("Registration Number: ")
                 existingOwner = hashRV.searchKey(regNum)
-                if len(existingOwner.ownedVehicle) is 1:
-                    existingOwner.transferVehicle(existingOwner.
-                                                  ownedVehicle[0],
-                                                  owner)
-                elif len(existingOwner.ownedVehicle) is not 0:
-                    for i in range(len(existingOwner.ownedVehicle)):
-                        if existingOwner.ownedVehicle[i].getRegNum()\
-                                == regNum:
-                            existingOwner.transferVehicle(existingOwner.
-                                                          ownedVehicle[i],
-                                                          owner)
-                        else:
-                            continue
-                else:
-                    break
+                if existingOwner != 0:
+                    if len(existingOwner.ownedVehicle) is 1:
+                        existingOwner.transferVehicle(existingOwner.ownedVehicle[0],
+                                                      owner)
+                        hashRV.searchReplace(regNum, owner)
+                        print("\nTransfer Ownership successful.\n")
+                        pause()
+                        return 0
+                    elif len(existingOwner.ownedVehicle) is not 0:
+                        for i in range(len(existingOwner.ownedVehicle)):
+                            if existingOwner.ownedVehicle[i].getRegNum() == regNum:
+                                existingOwner.transferVehicle(existingOwner.ownedVehicle[i],
+                                                              owner)
+                                hashRV.searchReplace(regNum, owner)
+                                print("\nTransfer Ownership successful.\n")
+                                pause()
+                                return 0
+
+                    else:
+                        print("No vehicle detected.\n")
+                        pause()
+                        return 0
+
         elif choice2 == "2":
-            ic = input("Please insert existing owner IC/Passport:")
-            if isinstance(hashO.searchKey(ic), Person):
-                owner = hash0.searchKey(ic)
-                inputVehicleDetail(owner, vehicle, hashRV)
-            break
+            clear()
+            condition = True
+            while condition:
+                title()
+                print("Transfer vehicle ownership")
+                print("Existing owner option is selected.")
+                this_is_a_dashing_line()
+                ic = input("Please insert existing owner IC/Passport:")
+                if isinstance(hashO.searchKey(ic), Person):
+                    if ECforIC(ic):
+                        break
+                    else:
+                        continue
+                else:
+                    print("This IC/Passport did not belongs to existing"
+                          " vehicle owner.")
+                    print("Please go to new vehicle owner"
+                          " section.")
+                    condition = False
+            if condition is False:
+                time.sleep(2.5)
+                break
+
+            while condition:
+                this_is_a_line()
+                print("Please enter the registration number of the"
+                      " vehicle.")
+                regNum = input("Registration Number: ")
+                owner = hashO.searchKey(ic)
+                existingOwner = hashRV.searchKey(regNum)
+                if existingOwner != 0:
+                    if len(existingOwner.ownedVehicle) is 1:
+                        existingOwner.transferVehicle(existingOwner.ownedVehicle[0],
+                                                      owner)
+                        hashRV.searchReplace(regNum, owner)
+                        print("\nTransfer Ownership successful.\n")
+                        pause()
+                        return 0
+                    elif len(existingOwner.ownedVehicle) is not 0:
+                        for i in range(len(existingOwner.ownedVehicle)):
+                            if existingOwner.ownedVehicle[i].getRegNum() == regNum:
+                                existingOwner.transferVehicle(existingOwner.ownedVehicle[i],
+                                                              owner)
+                                hashRV.searchReplace(regNum, owner)
+                                print("\nTransfer Ownership successful.\n")
+                                pause()
+                                return 0
+
+                    else:
+                        print("No vehicle detected.\n")
+                        time.sleep(2.5)
+                        return 0
+
         elif choice2 == "3":
             condition = False
             break
         else:
             print("Invalid input. Please try again.\n")
+            time.sleep(2.5)
             continue
 
 
 def searchOwnerInfo(hashO, hashRV):
+    title()
+    print("Search vehicle ownership")
+    this_is_a_dashing_line()
     print("Please enter the following to search.")
     regNum = input("Vehicle Registration Number: ")
     owner = hashRV.searchKey(regNum)
@@ -479,11 +625,9 @@ def searchOwnerInfo(hashO, hashRV):
 
                 this_is_a_line()
     else:
-        print("Vehicle Registration Number not found.\n")
-    try:
-        input("Press Enter to continue...")
-    except SyntaxError:
-        pass
+        print("\nVehicle Registration Number not found.\n")
+    pause()
+
 
 def this_is_a_dashing_line():
     print("----------------------------------------------------------")
@@ -499,24 +643,22 @@ def main(hashO, hashRV):
     while True:
         clear()
         showMenu()
-        try:
-            choice = int(input("Choice: "))
-        except ValueError:
-            print("Enter number only.\n")
+        choice = input("Choice: ")
 
-        if choice == 1:
+        if choice == "1":
             clear()
             newRegistration(hashO, hashRV)
-        elif choice == 2:
+        elif choice == "2":
             clear()
             ownershipTransfer(hashO, hashRV)
-        elif choice == 3:
+        elif choice == "3":
             clear()
             searchOwnerInfo(hashO, hashRV)
-        elif choice == 4:
-            clear()
+        elif choice == "4":
+            title()
             print("Thank you for using JPJ Vehicle Ownership Registration"
                   " System.\n")
             return False
         else:
-            print("Choose option 1-4 only.\n")
+            print("\nChoose option 1-4 only.\n")
+            pause()

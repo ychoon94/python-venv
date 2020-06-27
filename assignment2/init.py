@@ -1,3 +1,4 @@
+# Run this file first
 # Program to initialise the save file.
 
 from Vehicle import *
