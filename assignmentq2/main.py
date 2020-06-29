@@ -1,5 +1,8 @@
+# using random library to generate random list
 import random
+# using timeit library for better consistency than built in timer()
 import timeit
+# using OS library to detect operating system
 from os import system, name
 
 
@@ -15,6 +18,7 @@ def clear():
         _ = system('clear')
 
 
+# to pause program for viewing
 def pause():
     try:
         input("Press Enter to continue...")
@@ -23,24 +27,30 @@ def pause():
 
 
 def this_is_a_dashing_line():
-    print("----------------------------------------------------------")
+    print("\n----------------------------------------------------------\n")
 
 
+# bubble sort algorithm
 def bubbleSort(array, option):
-    exchanges = True
-    passnum = len(array)-1
-    while passnum > 0 and exchanges:
-        exchanges = False
-        for i in range(passnum):
-            if array[i] > array[i+1]:
-                exchanges = True
-                temp = array[i]
-                array[i] = array[i+1]
-                array[i+1] = temp
-            passnum = passnum-1
+    for passnum in range(len(array)-1, 0, -1):
+        if option == 1:
+            # ascending order sort
+            for i in range(passnum):
+                if array[i] > array[i+1]:
+                    temp = array[i]
+                    array[i] = array[i+1]
+                    array[i+1] = temp
+        elif option == 2:
+            # Descending order sort
+            for i in range(passnum):
+                if array[i] < array[i+1]:
+                    temp = array[i]
+                    array[i] = array[i+1]
+                    array[i+1] = temp
     return array
 
 
+# insertion sort algorithm
 def insertionSort(array, option):
     for i in range(1, len(array)):
         # element to be compared
@@ -61,6 +71,7 @@ def insertionSort(array, option):
     return array
 
 
+# ascending merge sort algorithm
 def mergeSort(L):
     array = []
     if len(L) == 1:
@@ -87,6 +98,7 @@ def mergeSort(L):
     return array
 
 
+# descending merge sort algorithm
 def reverseMergeSort(array):
     newList = []
     if len(array) == 1:
@@ -114,32 +126,36 @@ def reverseMergeSort(array):
     return newList
 
 
+# generate 1000 element ascending list
 def ascendingList():
     counter = 0
     mylist = []
-    for i in range(1000):
+    for i in range(999):
         mylist.append(counter)
         counter += 1
     return mylist
 
 
+# generate 1000 element descending list
 def descendingList():
-    counter = 1000
+    counter = 998
     mylist = []
-    for i in range(1000):
+    for i in range(999):
         mylist.append(counter)
         counter -= 1
     return mylist
 
 
+# generate 1000 element random list
 def randomList():
     mylist = []
     random.seed(1)
-    for i in range(1000):
-        mylist.append(random.randint(1, 1000))
+    for i in range(999):
+        mylist.append(random.randint(1, 999))
     return mylist
 
 
+# main menu
 def showMenuOuter():
     print("Please choose a sorting method to perform: ")
     print("1. Insertion Sort")
@@ -148,6 +164,7 @@ def showMenuOuter():
     print("4. Exit System")
 
 
+# second layer menu
 def showMenuInner():
     print("Please choose a list to perform sorting method: ")
     print("1. Ascending Order List")
@@ -156,6 +173,7 @@ def showMenuInner():
     print("4. Return to main menu")
 
 
+# third layer menu
 def showMenuInnerMost():
     print("Please choose the order to perform sorting method: ")
     print("1. Ascending Order")
@@ -163,6 +181,7 @@ def showMenuInnerMost():
     print("3. Return to previous menu")
 
 
+# algorithm for main menu
 def optionOuter():
     while True:
         clear()
@@ -194,6 +213,7 @@ def optionOuter():
             print("Choose option 1-4 only.\n")
 
 
+# algorithm for second layer menu
 def optionInner(choice1):
     while True:
         clear()
@@ -224,6 +244,7 @@ def optionInner(choice1):
             print("Choose option 1-4 only.\n")
 
 
+# algorithm for third layer menu
 def optionInnerMost(choice1, choice2):
     while True:
         clear()
@@ -245,7 +266,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = insertionSort(ascending, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Insertion Sort")
+                print("Sort Ascending list in Ascending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -258,7 +282,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = insertionSort(descending, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}".format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Insertion Sort")
+                print("Sort Descending list in Ascending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -271,7 +298,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = insertionSort(random, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Insertion Sort")
+                print("Sort Random list in Ascending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -284,7 +314,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = bubbleSort(ascending, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Bubble Sort")
+                print("Sort Ascending list in Ascending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -297,7 +330,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = bubbleSort(descending, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Bubble Sort")
+                print("Sort Descending list in Ascending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -310,7 +346,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = bubbleSort(random, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Bubble Sort")
+                print("Sort Random list in Ascending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -323,7 +362,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = mergeSort(ascending)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Merge Sort")
+                print("Sort Ascending list in Ascending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -336,7 +378,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = mergeSort(descending)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Merge Sort")
+                print("Sort Descending list in Ascending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -349,7 +394,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = mergeSort(random)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Merge Sort")
+                print("Sort Random list in Ascending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -363,7 +411,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = insertionSort(ascending, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Insertion Sort")
+                print("Sort Ascending list in descending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -376,7 +427,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = insertionSort(descending, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Insertion Sort")
+                print("Sort Descending list in descending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -389,7 +443,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = insertionSort(random, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Insertion Sort")
+                print("Sort Random list in descending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -402,7 +459,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = bubbleSort(ascending, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Bubble Sort")
+                print("Sort Ascending list in descending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -415,7 +475,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = bubbleSort(descending, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Bubble Sort")
+                print("Sort Descending list in descending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -428,7 +491,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = bubbleSort(random, choice3)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Bubble Sort")
+                print("Sort Random list in descending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -441,7 +507,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = reverseMergeSort(ascending)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Merge Sort")
+                print("Sort Ascending list in descending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -454,7 +523,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = reverseMergeSort(descending)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Merge Sort")
+                print("Sort Descending list in descending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
@@ -467,7 +539,10 @@ def optionInnerMost(choice1, choice2):
                 sortedList = reverseMergeSort(random)
                 timeDiff = timeit.default_timer() - starttime
                 print("Sorted List = {}" .format(sortedList))
-                print("It took {} second to finish sorting."
+                this_is_a_dashing_line()
+                print("Merge Sort")
+                print("Sort Random list in descending order")
+                print("Result: {} second."
                       .format(timeDiff))
                 pause()
 
