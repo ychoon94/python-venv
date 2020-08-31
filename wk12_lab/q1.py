@@ -8,7 +8,7 @@ class Stack:
         return self.top == -1
 
     def push(self, newItem):
-        if (self.top == self.MAXSTACK - 1):
+        if (self.top == self.MAXSTACK-1):
             return False
         self.top += 1
         self.item[self.top] = newItem
@@ -17,7 +17,6 @@ class Stack:
     def pop(self):
         if (self.isEmpty()):
             return False
-
         data = self.item[self.top]
         self.top -= 1
         return (data, True)
@@ -25,26 +24,28 @@ class Stack:
     def peek(self):
         if (self.isEmpty()):
             return False
-
         data = self.item[self.top]
         return (data, True)
 
     def displayAll(self):
-        counter = self.MAXSTACK - 1
-        while counter != -1:
-            if self.item[counter] == 0:
-                counter -= 1
-                pass
-            else:
-                print(self.item[counter])
-                counter -= 1
+        for i in self.item[self.top::-1]:
+            if i == 0:
+                continue
+            print("|{}|".format(i))
+        print("====")
 
 
 if __name__ == "__main__":
-    stack = Stack()
-    stack.push(40)
-    stack.push(30)
-    stack.push(20)
-    stack.push(10)
+    newStack = Stack()
 
-    stack.displayAll()
+    newStack.push(40)
+    newStack.push(30)
+    newStack.push(20)
+    newStack.push(10)
+    newStack.push(50)
+
+    newStack.displayAll()
+    newStack.pop()
+    newStack.displayAll()
+    print("\n")
+    print(newStack.item)
